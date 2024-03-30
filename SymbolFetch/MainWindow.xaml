@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:SymbolFetch"
         mc:Ignorable="d"
         Title="PDB Downloader" Height="460" Width="525"
-        ResizeMode="CanMinimize">
+        >
     <Window.Resources>
         <ResourceDictionary>
         <ResourceDictionary.MergedDictionaries>
