@@ -23,7 +23,7 @@ namespace SymbolFetch
         public MainWindow()
         {
             InitializeComponent();
-
+            init();
             WireupCommandBindings();
             WireupDownloaderEvents();
             SetDownloadLocation();
