@@ -6,6 +6,7 @@ namespace SymbolFetch.Helpers
     {
 
         #region Settings
+        public const string Version = "1.0.0";
         public static string SymbolServer;
         public static string DownloadFolder;
         public static bool EnableBulkDownload;

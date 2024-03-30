@@ -6,6 +6,7 @@ using System.IO;
 using System.Windows;
 using System.Windows.Input;
 using System.Linq;
+using SymbolFetch.Helpers;
 
 
 namespace SymbolFetch
@@ -33,7 +34,10 @@ namespace SymbolFetch
         #endregion
 
         #region Private methods
-
+        private void init()
+        {
+            this.Title = $"PDB Downloader {Constants.Version}";
+        }
         private void WireupCommandBindings()
         {
             CommandBindings.Add(new CommandBinding(ApplicationCommands.Close,
