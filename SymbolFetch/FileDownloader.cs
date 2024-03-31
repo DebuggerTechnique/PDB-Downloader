@@ -272,6 +272,7 @@ namespace SymbolFetch
                 bgwDownloader.ReportProgress((Int32)InvokeType.CalculatingFileNrRaiser, fileNr + 1);
                 try
                 {
+                    mainWindow.windowViewModel.Status = this.Files[fileNr].Path;
                     //Probe 1
                     HttpWebRequest webReq = (HttpWebRequest)WebRequest.Create(this.Files[fileNr].Path);
                     webReq.UserAgent = Constants.SymbolServer;
@@ -397,7 +398,10 @@ namespace SymbolFetch
         {
             bgwDownloader.ReportProgress((int)InvokeType.EventRaiser, eventName);
         }
-
+        /// <summary>
+        /// 同步
+        /// </summary>
+        /// <param name="fileNr"></param>
         private void downloadFile(Int32 fileNr)
         {
             bool headVerb = false;
@@ -406,7 +410,7 @@ namespace SymbolFetch
             fireEventFromBgw(Event.FileDownloadAttempting);
 
             FileInfo file = this.Files[fileNr];
-            
+            mainWindow.windowViewModel.Status = file.Path;
             Int64 size = 0;
 
             Byte[] readBytes = new Byte[this.PackageSize];
@@ -696,6 +700,8 @@ namespace SymbolFetch
         #endregion
 
         #region Properties
+        public MainWindow mainWindow { get; set; }
+
         public List<FileInfo> Files
         {
             get { return m_files; }

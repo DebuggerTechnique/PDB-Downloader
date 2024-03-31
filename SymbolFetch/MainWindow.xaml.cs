@@ -7,6 +7,8 @@ using System.Windows;
 using System.Windows.Input;
 using System.Linq;
 using SymbolFetch.Helpers;
+using System.Collections.Specialized;
+using System.ComponentModel;
 
 
 namespace SymbolFetch
@@ -16,7 +18,7 @@ namespace SymbolFetch
         #region Private variables
 
         private ResourceDownloader downloader = new ResourceDownloader();
-
+        internal MainWindowViewModel windowViewModel = new MainWindowViewModel();
         #endregion
 
         #region C'Tor
@@ -24,6 +26,8 @@ namespace SymbolFetch
         {
             InitializeComponent();
             init();
+            downloader.mainWindow = this;
+            DataContext = windowViewModel;
             WireupCommandBindings();
             WireupDownloaderEvents();
             SetDownloadLocation();
@@ -105,7 +109,7 @@ namespace SymbolFetch
                         downloader.FailedFiles.Add(item.ToString(), " - No Debug information in PE header");
                 }
             }
-
+            windowViewModel.Status = $"file init count: {downloader.Files.Count}";
             downloader.Start();
 
         }
@@ -279,6 +283,8 @@ namespace SymbolFetch
 
                 downloader.FailedFiles = new Dictionary<string, string>();
             }
+
+            windowViewModel.Status = "download finished";
         }
 
         private void downloader_CancelRequested(object sender, EventArgs e)
@@ -320,4 +326,5 @@ namespace SymbolFetch
         #endregion
 
     }
+
 }

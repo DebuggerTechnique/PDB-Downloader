@@ -120,6 +120,7 @@
     </ApplicationDefinition>
     <Compile Include="Extensions\HttpWebResponseExt.cs" />
     <Compile Include="Helpers\Constants.cs" />
+    <Compile Include="MainWindowViewModel.cs" />
     <Compile Include="UrlBuilder.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
